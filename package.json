@@ -1,0 +1,48 @@
+{
+  "name": "secure-user-dashboard-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
+    "test:unit": "jest --config jest.config.js",
+    "test:unit:watch": "jest --config jest.config.js --watch",
+    "test:unit:coverage": "jest --config jest.config.js --coverage",
+    "test:unit:coverage:report": "jest --config jest.config.js --coverage --coverageReporters=text-lcov | coveralls",
+    "test:unit:coverage:report:check": "jest --config jest.config.js --coverage --coverageReporters=text-lcov | coveralls && coveralls < coverage/lcov.info",
+    "test:unit:coverage:report:check:upload": "jest --config jest.config.js --coverage --coverageReporters=text-lcov | coveralls && coveralls < coverage/lcov.info && coveralls --gcov gcov-9",
+    "test:unit:coverage:report:check:upload:check": "jest --config jest.config.js --coverage --coverageReporters=text-lcov | coveralls && coveralls < coverage/lcov.info && coveralls --gcov gcov-9 && coveralls --gcov gcov-9 --check",
+    "test:unit:coverage:report:check:upload:check:upload": "jest --config jest.config.js --coverage --coverageReporters=text-lcov | coveralls && coveralls < coverage/lcov.info && coveralls --gcov gcov-9 && coveralls --gcov gcov-9 --check && coveralls --gcov gcov-9 --check --upload",
+    "test:unit:coverage:report:check:upload:check:upload:check": "jest --config jest.config.js --coverage --coverageReporters=text-lcov | coveralls && coveralls < coverage/lcov.info && coveralls --gcov gcov-9 && coveralls --gcov gcov-9 --check && coveralls --gcov gcov-9 --check --upload && coveralls --gcov gcov-9 --check --upload",
+    "test:unit:coverage:report:check:upload:check:upload:check:upload": "jest --config jest.config.js --coverage --coverageReporters=text-lcov | coveralls && coveralls < coverage/lcov.info && coveralls --gcov gcov-9 && coveralls --gcov gcov-9 --check && coveralls --gcov gcov-9 --check --upload && coveralls --gcov gcov-9 --check --upload && coveralls --gcov gcov-9 --check --upload",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.14.1",
+    "prisma": "^6.6.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
