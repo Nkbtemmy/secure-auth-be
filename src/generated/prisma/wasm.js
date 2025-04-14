@@ -124,6 +124,11 @@ exports.Prisma.RoleScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RelationLoadStrategy = {
+  query: 'query',
+  join: 'join'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -150,6 +155,21 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.RoleOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  name: 'name',
+  email: 'email',
+  password: 'password'
+};
+
+exports.Prisma.PasswordResetTokenOrderByRelevanceFieldEnum = {
+  email: 'email',
+  token: 'token'
 };
 
 

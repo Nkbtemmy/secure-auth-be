@@ -1,11 +1,30 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "rootDir": "src",
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "strict": true,
-    "skipLibCheck": true
-  }
+	"compilerOptions": {
+		"target": "ES2020",
+		"module": "commonjs",
+		// "types": ["jest"],
+		"experimentalDecorators": true,
+		"moduleResolution": "node",
+		"allowJs": true,
+		"checkJs": false,
+		"outDir": "build",
+		"rootDir": "src",
+		"noImplicitAny": false,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"inlineSourceMap": true,
+		"resolveJsonModule": true,
+		"declaration": false,
+		"strict": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitThis": true,
+		"alwaysStrict": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
 }

@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes';
-import userRoutes from './routes/userRoutes';
+import pagination from './middlewares/pagination';
+import routes from './routes';
 
 dotenv.config();
 
@@ -11,10 +11,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-// app.use('/api/auth', authRoutes);
-// app.use('/api/users', userRoutes);
-app.get('/', (_, res) => {
-  res.send('Secure User Dashboard API');
+app.use(express.urlencoded({ extended: true }));
+app.use(pagination.middleware);
+app.use(routes);
+app.get('/', (req, res) => {
+  res.send('Welcome to the Secure User API');
 });
 
 app.listen(PORT, () => {

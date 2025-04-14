@@ -1321,7 +1321,7 @@ export namespace Prisma {
   type RoleGetPayload<S extends boolean | null | undefined | RoleDefaultArgs> = $Result.GetResult<Prisma.$RolePayload, S>
 
   type RoleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<RoleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    Omit<RoleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
       select?: RoleCountAggregateInputType | true
     }
 
@@ -1766,6 +1766,7 @@ export namespace Prisma {
      * Filter, which Role to fetch.
      */
     where: RoleWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -1788,6 +1789,7 @@ export namespace Prisma {
      * Filter, which Role to fetch.
      */
     where: RoleWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -1840,6 +1842,7 @@ export namespace Prisma {
      * Filter by unique combinations of Roles.
      */
     distinct?: RoleScalarFieldEnum | RoleScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -1892,6 +1895,7 @@ export namespace Prisma {
      * Filter by unique combinations of Roles.
      */
     distinct?: RoleScalarFieldEnum | RoleScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -1939,6 +1943,7 @@ export namespace Prisma {
      */
     skip?: number
     distinct?: RoleScalarFieldEnum | RoleScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -1961,6 +1966,7 @@ export namespace Prisma {
      * The data needed to create a Role.
      */
     data: XOR<RoleCreateInput, RoleUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2017,6 +2023,7 @@ export namespace Prisma {
      * Choose, which Role to update.
      */
     where: RoleWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2091,6 +2098,7 @@ export namespace Prisma {
      * In case the Role was found with the provided `where` argument, update it with this data.
      */
     update: XOR<RoleUpdateInput, RoleUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2113,6 +2121,7 @@ export namespace Prisma {
      * Filter which Role to delete.
      */
     where: RoleWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2456,7 +2465,7 @@ export namespace Prisma {
   type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
   type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
       select?: UserCountAggregateInputType | true
     }
 
@@ -2904,6 +2913,7 @@ export namespace Prisma {
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2926,6 +2936,7 @@ export namespace Prisma {
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -2978,6 +2989,7 @@ export namespace Prisma {
      * Filter by unique combinations of Users.
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3030,6 +3042,7 @@ export namespace Prisma {
      * Filter by unique combinations of Users.
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3077,6 +3090,7 @@ export namespace Prisma {
      */
     skip?: number
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3099,6 +3113,7 @@ export namespace Prisma {
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3159,6 +3174,7 @@ export namespace Prisma {
      * Choose, which User to update.
      */
     where: UserWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3237,6 +3253,7 @@ export namespace Prisma {
      * In case the User was found with the provided `where` argument, update it with this data.
      */
     update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3259,6 +3276,7 @@ export namespace Prisma {
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3536,7 +3554,7 @@ export namespace Prisma {
   type PasswordResetTokenGetPayload<S extends boolean | null | undefined | PasswordResetTokenDefaultArgs> = $Result.GetResult<Prisma.$PasswordResetTokenPayload, S>
 
   type PasswordResetTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PasswordResetTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    Omit<PasswordResetTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
       select?: PasswordResetTokenCountAggregateInputType | true
     }
 
@@ -3977,6 +3995,7 @@ export namespace Prisma {
      * Filter, which PasswordResetToken to fetch.
      */
     where: PasswordResetTokenWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -3995,6 +4014,7 @@ export namespace Prisma {
      * Filter, which PasswordResetToken to fetch.
      */
     where: PasswordResetTokenWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4043,6 +4063,7 @@ export namespace Prisma {
      * Filter by unique combinations of PasswordResetTokens.
      */
     distinct?: PasswordResetTokenScalarFieldEnum | PasswordResetTokenScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4091,6 +4112,7 @@ export namespace Prisma {
      * Filter by unique combinations of PasswordResetTokens.
      */
     distinct?: PasswordResetTokenScalarFieldEnum | PasswordResetTokenScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4134,6 +4156,7 @@ export namespace Prisma {
      */
     skip?: number
     distinct?: PasswordResetTokenScalarFieldEnum | PasswordResetTokenScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4152,6 +4175,7 @@ export namespace Prisma {
      * The data needed to create a PasswordResetToken.
      */
     data: XOR<PasswordResetTokenCreateInput, PasswordResetTokenUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4204,6 +4228,7 @@ export namespace Prisma {
      * Choose, which PasswordResetToken to update.
      */
     where: PasswordResetTokenWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4274,6 +4299,7 @@ export namespace Prisma {
      * In case the PasswordResetToken was found with the provided `where` argument, update it with this data.
      */
     update: XOR<PasswordResetTokenUpdateInput, PasswordResetTokenUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4292,6 +4318,7 @@ export namespace Prisma {
      * Filter which PasswordResetToken to delete.
      */
     where: PasswordResetTokenWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
   }
 
   /**
@@ -4347,6 +4374,14 @@ export namespace Prisma {
   export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
 
 
+  export const RelationLoadStrategy: {
+    query: 'query',
+    join: 'join'
+  };
+
+  export type RelationLoadStrategy = (typeof RelationLoadStrategy)[keyof typeof RelationLoadStrategy]
+
+
   export const UserScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -4385,6 +4420,30 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const RoleOrderByRelevanceFieldEnum: {
+    name: 'name'
+  };
+
+  export type RoleOrderByRelevanceFieldEnum = (typeof RoleOrderByRelevanceFieldEnum)[keyof typeof RoleOrderByRelevanceFieldEnum]
+
+
+  export const UserOrderByRelevanceFieldEnum: {
+    name: 'name',
+    email: 'email',
+    password: 'password'
+  };
+
+  export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+  export const PasswordResetTokenOrderByRelevanceFieldEnum: {
+    email: 'email',
+    token: 'token'
+  };
+
+  export type PasswordResetTokenOrderByRelevanceFieldEnum = (typeof PasswordResetTokenOrderByRelevanceFieldEnum)[keyof typeof PasswordResetTokenOrderByRelevanceFieldEnum]
 
 
   /**
@@ -4468,6 +4527,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     users?: UserOrderByRelationAggregateInput
+    _relevance?: RoleOrderByRelevanceInput
   }
 
   export type RoleWhereUniqueInput = Prisma.AtLeast<{
@@ -4526,6 +4586,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     role?: RoleOrderByWithRelationInput
+    _relevance?: UserOrderByRelevanceInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4587,6 +4648,7 @@ export namespace Prisma {
     token?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
+    _relevance?: PasswordResetTokenOrderByRelevanceInput
   }
 
   export type PasswordResetTokenWhereUniqueInput = Prisma.AtLeast<{
@@ -4815,6 +4877,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
@@ -4838,6 +4901,12 @@ export namespace Prisma {
 
   export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type RoleOrderByRelevanceInput = {
+    fields: RoleOrderByRelevanceFieldEnum | RoleOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type RoleCountOrderByAggregateInput = {
@@ -4896,6 +4965,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
@@ -4920,6 +4990,12 @@ export namespace Prisma {
   export type RoleScalarRelationFilter = {
     is?: RoleWhereInput
     isNot?: RoleWhereInput
+  }
+
+  export type UserOrderByRelevanceInput = {
+    fields: UserOrderByRelevanceFieldEnum | UserOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -4960,6 +5036,12 @@ export namespace Prisma {
   export type UserSumOrderByAggregateInput = {
     id?: SortOrder
     roleId?: SortOrder
+  }
+
+  export type PasswordResetTokenOrderByRelevanceInput = {
+    fields: PasswordResetTokenOrderByRelevanceFieldEnum | PasswordResetTokenOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type PasswordResetTokenCountOrderByAggregateInput = {
@@ -5088,6 +5170,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -5140,6 +5223,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
