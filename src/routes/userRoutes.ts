@@ -5,8 +5,13 @@ import {
     list,
     updateRole,
     remove,
+    getUser,
+    getAllUsers,
+    updateUser,
+    deleteUser,
 } from '../controllers/userController';
 import { authenticate, authorize } from '../middlewares/authMiddleware';
+import { getUserByEmail, updateUserRole } from '../services/userService';
 
 const router = Router();
 
@@ -31,5 +36,27 @@ router.put('/:id/role', authorize(['admin']) as RequestHandler, (req, res, next)
 router.delete('/:id', authorize(['admin']) as RequestHandler, (req, res, next) => {
     remove(req, res).catch(next);
 });
+router.get('/user/:id', (req, res, next) => {
+    getUser(req, res).catch(next);
+});
+router.get('/users', (req, res, next) => {
+    getAllUsers(req, res).catch(next);
+});
+
+router.put('/user/:id', (req, res, next) => {
+    updateUser(req, res).catch(next);
+});
+router.delete('/user/:id', (req, res, next) => {
+    deleteUser(req, res).catch(next);
+});
+
+router.put('/user/:id/role', (req, res, next) => {
+    updateUserRole(req, res).catch(next);
+});
+router.get('/user/email/:email', (req, res, next) => {
+    getUserByEmail(req, res).catch(next);
+});
+
+
 
 export default router;

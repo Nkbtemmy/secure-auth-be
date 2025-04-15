@@ -13,7 +13,7 @@ const auth = {
           required: true,
           schema: {
             example: {
-              username: "",
+              name: "",
               email: "",
               password: "",
             },
