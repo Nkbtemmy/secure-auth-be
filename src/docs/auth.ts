@@ -1,7 +1,7 @@
 import responses from "./responses";
 
 const auth = {
-  "/register": {
+  "/auth/register": {
     post: {
       tags: ["Auth"],
       security: [],
@@ -24,7 +24,7 @@ const auth = {
       responses,
     },
   },
-  "/login": {
+  "/auth/login": {
     post: {
       tags: ["Auth"],
       security: [],
@@ -46,7 +46,7 @@ const auth = {
       responses,
     },
   },
-  "/logout": {
+  "/auth/logout": {
     post: {
       tags: ["Auth"],
       security: [{ JWT: [] }],
@@ -55,7 +55,7 @@ const auth = {
       responses,
     },
   },
-  "/user/{id}": {
+  "/auth/user/{id}": {
     get: {
       tags: ["Auth"],
       security: [{ JWT: [] }],
@@ -114,7 +114,7 @@ const auth = {
       responses,
     },
   },
-  "/users": {
+  "/auth/users": {
     get: {
       tags: ["Auth"],
       security: [{ JWT: [] }],
@@ -123,7 +123,7 @@ const auth = {
       responses,
     },
   },
-  "/user/{id}/role": {
+  "/auth/user/{id}/role": {
     put: {
       tags: ["Auth"],
       security: [{ JWT: [] }],
@@ -151,7 +151,7 @@ const auth = {
       responses,
     },
   },
-  "/user/email/{email}": {
+  "/auth/user/email/{email}": {
     get: {
       tags: ["Auth"],
       security: [{ JWT: [] }],
@@ -168,7 +168,7 @@ const auth = {
       responses,
     },
   },
-  "/user/{id}/password": {
+  "/auth/user/{id}/password": {
     put: {
       tags: ["Auth"],
       security: [{ JWT: [] }],
@@ -197,7 +197,7 @@ const auth = {
       responses,
     },
   },
-  "/reset-password": {
+  "/auth/reset-password": {
     put: {
       tags: ["Auth"],
       security: [],
@@ -220,7 +220,7 @@ const auth = {
       responses,
     },
   },
-  "/verify-token/{token}": {
+  "/auth/verify-token/{token}": {
     get: {
       tags: ["Auth"],
       security: [],
@@ -237,7 +237,7 @@ const auth = {
       responses,
     },
   },
-  "/refresh-token/{token}": {
+  "/auth/refresh-token/{token}": {
     get: {
       tags: ["Auth"],
       security: [],

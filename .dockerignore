@@ -51,3 +51,4 @@ coverage
 # Ignore any output files specific to local development
 coverage/
 tmp/
+src/generated

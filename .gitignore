@@ -139,3 +139,4 @@ yarn.lock
 
 # src/app/schemas/generated/**
 prisma/seed.js
+src/generated
