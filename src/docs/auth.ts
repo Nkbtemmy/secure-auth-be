@@ -1,11 +1,34 @@
 import responses from "./responses";
 
 const auth = {
-  "/auth/login/email": {
+  "/register": {
     post: {
       tags: ["Auth"],
       security: [],
-      summary: "Login by email",
+      summary: "Register a new user",
+      parameters: [
+        {
+          in: "body",
+          name: "userData",
+          required: true,
+          schema: {
+            example: {
+              username: "",
+              email: "",
+              password: "",
+            },
+          },
+        },
+      ],
+      consumes: ["application/json"],
+      responses,
+    },
+  },
+  "/login": {
+    post: {
+      tags: ["Auth"],
+      security: [],
+      summary: "Login a user",
       parameters: [
         {
           in: "body",
@@ -23,81 +46,144 @@ const auth = {
       responses,
     },
   },
-  "/auth/login/phone": {
-    post: {
-      tags: ["Auth"],
-      security: [],
-      summary: "Login by phone",
-      parameters: [
-        {
-          in: "body",
-          name: "credentials",
-          required: true,
-          schema: {
-            example: {
-              phoneNumber: "",
-              password: "",
-            },
-          },
-        },
-      ],
-      consumes: ["application/json"],
-      responses,
-    },
-  },
-  "/auth/email/forget-password": {
-    post: {
-      tags: ["Auth"],
-      security: [],
-      summary: "Forget password account email",
-      parameters: [
-        {
-          in: "body",
-          name: "email",
-          required: true,
-          schema: {
-            example: {
-              email: "",
-            },
-          },
-        },
-      ],
-      consumes: ["application/json"],
-      responses,
-    },
-  },
-  "/auth/email/reset-password": {
-    put: {
-      tags: ["Auth"],
-      security: [],
-      summary: "Reseting account password",
-      parameters: [
-        {
-          in: "body",
-          name: "Required fields",
-          required: true,
-          schema: {
-            example: {
-              email: "",
-              password: "",
-              verificationCode: "",
-            },
-          },
-        },
-      ],
-      consumes: ["application/json"],
-      responses,
-    },
-  },
-  "/auth/change-password": {
+  "/logout": {
     post: {
       tags: ["Auth"],
       security: [{ JWT: [] }],
-      summary: "Change password fields",
+      summary: "Logout the current user",
+      parameters: [],
+      responses,
+    },
+  },
+  "/user/{id}": {
+    get: {
+      tags: ["Auth"],
+      security: [{ JWT: [] }],
+      summary: "Get a user by ID",
       parameters: [
         {
+          in: "path",
+          name: "id",
+          required: true,
+          type: "string",
+          example: "12345",
+        },
+      ],
+      responses,
+    },
+    put: {
+      tags: ["Auth"],
+      security: [{ JWT: [] }],
+      summary: "Update a user by ID",
+      parameters: [
+        {
+          in: "path",
+          name: "id",
+          required: true,
+          type: "string",
+          example: "12345",
+        },
+        {
           in: "body",
-          name: "credentials",
+          name: "updateData",
+          required: true,
+          schema: {
+            example: {
+              username: "",
+              email: "",
+            },
+          },
+        },
+      ],
+      consumes: ["application/json"],
+      responses,
+    },
+    delete: {
+      tags: ["Auth"],
+      security: [{ JWT: [] }],
+      summary: "Delete a user by ID",
+      parameters: [
+        {
+          in: "path",
+          name: "id",
+          required: true,
+          type: "string",
+          example: "12345",
+        },
+      ],
+      responses,
+    },
+  },
+  "/users": {
+    get: {
+      tags: ["Auth"],
+      security: [{ JWT: [] }],
+      summary: "Get all users",
+      parameters: [],
+      responses,
+    },
+  },
+  "/user/{id}/role": {
+    put: {
+      tags: ["Auth"],
+      security: [{ JWT: [] }],
+      summary: "Update user role by ID",
+      parameters: [
+        {
+          in: "path",
+          name: "id",
+          required: true,
+          type: "string",
+          example: "12345",
+        },
+        {
+          in: "body",
+          name: "roleData",
+          required: true,
+          schema: {
+            example: {
+              role: "",
+            },
+          },
+        },
+      ],
+      consumes: ["application/json"],
+      responses,
+    },
+  },
+  "/user/email/{email}": {
+    get: {
+      tags: ["Auth"],
+      security: [{ JWT: [] }],
+      summary: "Get a user by email",
+      parameters: [
+        {
+          in: "path",
+          name: "email",
+          required: true,
+          type: "string",
+          example: "user@example.com",
+        },
+      ],
+      responses,
+    },
+  },
+  "/user/{id}/password": {
+    put: {
+      tags: ["Auth"],
+      security: [{ JWT: [] }],
+      summary: "Update user password",
+      parameters: [
+        {
+          in: "path",
+          name: "id",
+          required: true,
+          type: "string",
+          example: "12345",
+        },
+        {
+          in: "body",
+          name: "passwordData",
           required: true,
           schema: {
             example: {
@@ -111,19 +197,21 @@ const auth = {
       responses,
     },
   },
-  "/auth/phone/forget-pin": {
-    post: {
+  "/reset-password": {
+    put: {
       tags: ["Auth"],
       security: [],
-      summary: "Forget PIN account phone number",
+      summary: "Reset user password",
       parameters: [
         {
           in: "body",
-          name: "phoneNumber",
+          name: "resetData",
           required: true,
           schema: {
             example: {
-              phoneNumber: "",
+              email: "",
+              newPassword: "",
+              verificationCode: "",
             },
           },
         },
@@ -132,26 +220,37 @@ const auth = {
       responses,
     },
   },
-  "/auth/phone/reset-pin": {
-    put: {
+  "/verify-token/{token}": {
+    get: {
       tags: ["Auth"],
       security: [],
-      summary: "Resetting account PIN",
+      summary: "Verify the provided token",
       parameters: [
         {
-          in: "body",
-          name: "Required fields",
+          in: "path",
+          name: "token",
           required: true,
-          schema: {
-            example: {
-              phoneNumber: "",
-              password: "",
-              verificationCode: "",
-            },
-          },
+          type: "string",
+          example: "some-verification-token",
         },
       ],
-      consumes: ["application/json"],
+      responses,
+    },
+  },
+  "/refresh-token/{token}": {
+    get: {
+      tags: ["Auth"],
+      security: [],
+      summary: "Refresh the access token",
+      parameters: [
+        {
+          in: "path",
+          name: "token",
+          required: true,
+          type: "string",
+          example: "some-refresh-token",
+        },
+      ],
       responses,
     },
   },

@@ -1,15 +1,26 @@
 import responses from "./responses";
 
 export const users = {
-  "/users": {
-    post: {
+  "/users/me": {
+    get: {
       tags: ["User"],
       security: [
         {
           JWT: [],
         },
       ],
-      summary: "Create a user",
+      summary: "Retrieve the profile of the current authenticated user",
+      consumes: ["application/json"],
+      responses,
+    },
+    put: {
+      tags: ["User"],
+      security: [
+        {
+          JWT: [],
+        },
+      ],
+      summary: "Update the current authenticated user's profile",
       parameters: [
         {
           in: "body",
@@ -20,8 +31,6 @@ export const users = {
               name: "",
               email: "",
               phoneNumber: "",
-              gender: "M",
-              dob: "1990-01-01",
             },
           },
         },
@@ -29,94 +38,88 @@ export const users = {
       consumes: ["application/json"],
       responses,
     },
+  },
+  "/users": {
     get: {
-      tags: ["User"],
+      tags: ["User", "Admin"],
       security: [
         {
           JWT: [],
         },
       ],
+      summary: "List all users (admin-only)",
       parameters: [
         {
           name: "search",
           in: "query",
-          description: "Filter tariffs by search",
+          description: "Filter users by search string",
           schema: {
             type: "string",
           },
         },
-				{
-					name: "page",
-					in: "query",
-					description: "Current Page",
-					schema: {
-						type: "number",
-					},
-				},
-				{
-					name: "itemsPerPage",
-					in: "query",
-					description: "Number of items to be displayed",
-					schema: {
-						type: "number",
-					},
-				},
-			],
-      summary: "List all users",
+        {
+          name: "page",
+          in: "query",
+          description: "Current page number",
+          schema: {
+            type: "number",
+          },
+        },
+        {
+          name: "itemsPerPage",
+          in: "query",
+          description: "Number of items per page",
+          schema: {
+            type: "number",
+          },
+        },
+      ],
+      consumes: ["application/json"],
+      responses,
+    },
+  },
+  "/users/{id}/role": {
+    put: {
+      tags: ["User", "Admin"],
+      security: [
+        {
+          JWT: [],
+        },
+      ],
+      summary: "Update a user's role (admin-only)",
+      parameters: [
+        {
+          in: "path",
+          name: "id",
+          required: true,
+          schema: {
+            type: "string",
+          },
+        },
+        {
+          in: "body",
+          name: "role",
+          required: true,
+          schema: {
+            example: {
+              role: "admin",
+            },
+          },
+        },
+      ],
       consumes: ["application/json"],
       responses,
     },
   },
   "/users/{id}": {
-    get: {
-      tags: ["User"],
-      security: [
-        {
-          JWT: [],
-        },
-      ],
-      summary: "Retreive a certain user",
-      parameters: [
-        {
-          in: "path",
-          name: "id",
-          required: true,
-          schema: {
-            type: "string",
-          },
-        },
-      ],
-      consumes: ["application/json"],
-      responses,
-    },
-    patch: {
-      tags: ["User"],
-      security: [
-        {
-          JWT: [],
-        },
-      ],
-      parameters: [
-        {
-          in: "path",
-          name: "id",
-          required: true,
-          schema: {
-            type: "string",
-          },
-        },
-      ],
-      summary: "Update a certain users",
-      consumes: ["application/json"],
-      responses,
-    },
     delete: {
-      tags: ["User"],
+      tags: ["User", "Admin"],
       security: [
         {
           JWT: [],
         },
       ],
+      summary: "Delete a user (admin-only)",
       parameters: [
         {
           in: "path",
@@ -124,63 +127,6 @@ export const users = {
           required: true,
           schema: {
             type: "string",
-          },
-        },
-      ],
-      summary: "delete a certain users",
-      consumes: ["application/json"],
-      responses,
-    },
-  },
-  "/users/profile": {
-    get: {
-      tags: ["User"],
-      security: [
-        {
-          JWT: [],
-        },
-      ],
-      summary: "Retrieve a user profile",
-      parameters: [],
-      consumes: ["application/json"],
-      responses,
-    }
-  },
-  "/users/disactivate": {
-    post: {
-      tags: ["User"],
-      security: [{JWT: [],},],
-      summary: "Disactivating",
-      parameters: [
-        {
-          in: "body",
-          name: "userId",
-          required: true,
-          schema: {
-            example: {
-              userId: "",
-            },
-          },
-        },
-      ],
-      consumes: ["application/json"],
-      responses,
-    },
-  },
-  "/users/activate": {
-    post: {
-      tags: ["User"],
-      security: [{JWT: [],},],
-      summary: "Disactivating",
-      parameters: [
-        {
-          in: "body",
-          name: "userId",
-          required: true,
-          schema: {
-            example: {
-              userId: "",
-            },
           },
         },
       ],

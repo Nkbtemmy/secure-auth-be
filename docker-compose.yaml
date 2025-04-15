@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: .
+      target: development
+    environment:
+      DATABASE_URL: postgres://postgres:postgrespassword@db:5432/mydatabase
+      API_VERSION: v1
+      NODE_ENV: development
+      PORT: 3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "7000:3000"
+    depends_on:
+      - db
+    command: ['npm', 'run', 'dev']
+    
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  postgres_data:

@@ -1,0 +1,53 @@
+# Ignore node_modules, as we install dependencies inside the Docker container
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignore local environment and Prisma configuration files that shouldn't be included in the Docker image
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.prisma
+
+# Ignore logs and temporary files
+logs
+*.log
+logs/*
+*.pid
+*.seed
+*.seed.ts
+
+# Ignore the `Dockerfile` and any `docker-compose` files
+Dockerfile
+docker-compose*.yml
+
+# Ignore the build folder if it's generated outside the container
+dist/
+build/
+
+# Ignore editor and system files
+.vscode
+.idea
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+
+# Ignore test-related files
+__tests__
+__mocks__
+coverage
+*.test.js
+*.spec.js
+*.test.ts
+*.spec.ts
+
+# Ignore unnecessary files in the Prisma directory
+# prisma/migrations
+# prisma/seed.js
+
+# Ignore any output files specific to local development
+coverage/
+tmp/

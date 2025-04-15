@@ -1,0 +1,22 @@
+services:
+  smart-parking-be:
+    image: urutare/smart-parking-be
+    container_name: smart-parking-be
+    restart: on-failure
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+    ports:
+      - "5678:5678"
+    networks:
+      - stock_urutare-inc-network
+    command: >
+      sh -c "
+        yarn db:migrate && 
+        yarn prod:db:seed && 
+        yarn start"
+
+networks:
+  stock_urutare-inc-network:
+      driver: bridge
