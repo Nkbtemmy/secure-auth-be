@@ -10,7 +10,7 @@ import { authenticate, authorize, isAdmin } from '../middlewares/authMiddleware'
 
 const router = Router();
 
-router.use(authenticate as RequestHandler, authorize(['admin']) as RequestHandler);
+router.use(authenticate as RequestHandler, authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler);
 
 router.post('/', (req, res, next) => {
     create(req, res, next).catch(next);

@@ -27,13 +27,13 @@ router.put('/me', (req, res, next) => {
 });
 
 // Admin-only routes
-router.get('/', authorize(['admin']) as RequestHandler, (req, res, next) => {
+router.get('/', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
     list(req, res).catch(next);
 });
-router.put('/:id/role', authorize(['admin']) as RequestHandler, (req, res, next) => {
+router.put('/:id/role', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
     updateRole(req, res).catch(next);
 });
-router.delete('/:id', authorize(['admin']) as RequestHandler, (req, res, next) => {
+router.delete('/:id', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
     remove(req, res).catch(next);
 });
 router.get('/user/:id', (req, res, next) => {

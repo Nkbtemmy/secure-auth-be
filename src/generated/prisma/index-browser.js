@@ -147,6 +147,13 @@ exports.Prisma.PasswordResetTokenScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.UserActivityScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  timestamp: 'timestamp'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -172,11 +179,16 @@ exports.Prisma.PasswordResetTokenOrderByRelevanceFieldEnum = {
   token: 'token'
 };
 
+exports.Prisma.UserActivityOrderByRelevanceFieldEnum = {
+  action: 'action'
+};
+
 
 exports.Prisma.ModelName = {
   Role: 'Role',
   User: 'User',
-  PasswordResetToken: 'PasswordResetToken'
+  PasswordResetToken: 'PasswordResetToken',
+  UserActivity: 'UserActivity'
 };
 
 /**
