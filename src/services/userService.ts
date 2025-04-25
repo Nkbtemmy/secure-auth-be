@@ -2,6 +2,16 @@ import prisma from '../config/prisma';
 import bcrypt from 'bcrypt';
 
 
+export const createUser = async (data: any) => {
+  const hashedPassword = await bcrypt.hash(data.password, 10);
+  return prisma.user.create({
+    data: {
+      ...data,
+      password: hashedPassword,
+    },
+  });
+};
+
 export const getProfile = async (userId: number) => {
   return prisma.user.findUnique({
     where: { id: userId },

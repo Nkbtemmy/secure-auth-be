@@ -4,14 +4,13 @@ import {
     update,
     list,
     updateRole,
-    remove,
-    getUser,
-    getAllUsers,
-    updateUser,
     deleteUser,
+    getUser,
+    getUserByEmail,
+    updateUser,
+    create,
 } from '../controllers/userController';
 import { authenticate, authorize } from '../middlewares/authMiddleware';
-import { getUserByEmail, updateUserRole } from '../services/userService';
 
 const router = Router();
 
@@ -27,36 +26,26 @@ router.put('/me', (req, res, next) => {
 });
 
 // Admin-only routes
+router.post('/', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
+    create(req, res).catch(next);
+});
 router.get('/', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
     list(req, res).catch(next);
+});
+router.get('/email/:email', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
+    getUserByEmail(req, res).catch(next);
+});
+router.get('/:id', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
+    getUser(req, res).catch(next);
+});
+router.put('/:id', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
+    updateUser(req, res).catch(next);
 });
 router.put('/:id/role', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
     updateRole(req, res).catch(next);
 });
 router.delete('/:id', authorize(["SUPER_ADMIN", "ADMIN"]) as RequestHandler, (req, res, next) => {
-    remove(req, res).catch(next);
-});
-router.get('/user/:id', (req, res, next) => {
-    getUser(req, res).catch(next);
-});
-router.get('/users', (req, res, next) => {
-    getAllUsers(req, res).catch(next);
-});
-
-router.put('/user/:id', (req, res, next) => {
-    updateUser(req, res).catch(next);
-});
-router.delete('/user/:id', (req, res, next) => {
     deleteUser(req, res).catch(next);
 });
-
-router.put('/user/:id/role', (req, res, next) => {
-    updateUserRole(req, res).catch(next);
-});
-router.get('/user/email/:email', (req, res, next) => {
-    getUserByEmail(req, res).catch(next);
-});
-
-
 
 export default router;

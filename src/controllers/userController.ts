@@ -1,7 +1,17 @@
 import { Request, Response } from 'express';
 import { getProfile, updateProfile, listUsers, changeUserRole } from '../services/userService';
 import { deleteUserService } from '../services/authService';
+import { createUser } from '../services/userService';
+import { PrismaClient } from '../generated/prisma';
 
+export const create = async (req: Request, res: Response) => {
+  try {
+    const user = await createUser(req.body);
+    return res.status(201).json(user);
+  } catch (err: any) {
+    return res.status(400).json({ error: err.message });
+  }
+};
 export const me = async (req: Request, res: Response) => {
   try {
     const user = await getProfile((req as any).user.id);
@@ -96,14 +106,48 @@ export const getUserByEmail = async (req: Request, res: Response) => {
   }
 };
 
-function getUserByIdService(userId: string) {
-  throw new Error('Function not implemented.');
-}
-function getAllUsersService() {
-  throw new Error('Function not implemented.');
+const prisma = new PrismaClient();
+
+export async function getUserByIdService(identifier: string) {
+  // If identifier can be parsed as a number, treat it as the user id,
+  // otherwise treat it as the user email.
+  const id = parseInt(identifier, 10);
+  if (!isNaN(id)) {
+    return prisma.user.findUnique({
+      where: { id },
+      include: { role: true }
+    });
+  } else {
+    return prisma.user.findUnique({
+      where: { email: identifier },
+      include: { role: true }
+    });
+  }
 }
 
-function updateUserService(userId: string, name: any, email: any, password: any) {
-  throw new Error('Function not implemented.');
+export async function getAllUsersService() {
+  return prisma.user.findMany({
+    include: { role: true }
+  });
+}
+
+export async function updateUserService(userId: string, name: any, email: any, password: any) {
+  const id = parseInt(userId, 10);
+  const data: { name?: string; email?: string; password?: string } = {};
+  if (name !== undefined) {
+    data.name = name;
+  }
+  if (email !== undefined) {
+    data.email = email;
+  }
+  if (password !== undefined) {
+    data.password = password;
+  }
+  
+  return prisma.user.update({
+    where: { id },
+    data,
+    include: { role: true }
+  });
 }
 
