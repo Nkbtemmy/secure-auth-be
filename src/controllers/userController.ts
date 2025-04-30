@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { getProfile, updateProfile, listUsers, changeUserRole } from '../services/userService';
 import { deleteUserService } from '../services/authService';
 import { createUser } from '../services/userService';
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '@prisma/client';
 
 export const create = async (req: Request, res: Response) => {
   try {
@@ -49,7 +49,7 @@ export const updateRole = async (req: Request, res: Response) => {
 };
 export const remove = async (req: Request, res: Response) => {
   try {
-    const user = await deleteUser(Number(req.params.id));
+    const user = await deleteUserService(req.params.id);
     res.json(user);
   } catch (err: any) {
     res.status(400).json({ error: err.message });
@@ -109,8 +109,6 @@ export const getUserByEmail = async (req: Request, res: Response) => {
 const prisma = new PrismaClient();
 
 export async function getUserByIdService(identifier: string) {
-  // If identifier can be parsed as a number, treat it as the user id,
-  // otherwise treat it as the user email.
   const id = parseInt(identifier, 10);
   if (!isNaN(id)) {
     return prisma.user.findUnique({

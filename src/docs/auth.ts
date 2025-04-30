@@ -55,119 +55,6 @@ const auth = {
       responses,
     },
   },
-  "/auth/user/{id}": {
-    get: {
-      tags: ["Auth"],
-      security: [{ JWT: [] }],
-      summary: "Get a user by ID",
-      parameters: [
-        {
-          in: "path",
-          name: "id",
-          required: true,
-          type: "string",
-          example: "12345",
-        },
-      ],
-      responses,
-    },
-    put: {
-      tags: ["Auth"],
-      security: [{ JWT: [] }],
-      summary: "Update a user by ID",
-      parameters: [
-        {
-          in: "path",
-          name: "id",
-          required: true,
-          type: "string",
-          example: "12345",
-        },
-        {
-          in: "body",
-          name: "updateData",
-          required: true,
-          schema: {
-            example: {
-              username: "",
-              email: "",
-            },
-          },
-        },
-      ],
-      consumes: ["application/json"],
-      responses,
-    },
-    delete: {
-      tags: ["Auth"],
-      security: [{ JWT: [] }],
-      summary: "Delete a user by ID",
-      parameters: [
-        {
-          in: "path",
-          name: "id",
-          required: true,
-          type: "string",
-          example: "12345",
-        },
-      ],
-      responses,
-    },
-  },
-  "/auth/users": {
-    get: {
-      tags: ["Auth"],
-      security: [{ JWT: [] }],
-      summary: "Get all users",
-      parameters: [],
-      responses,
-    },
-  },
-  "/auth/user/{id}/role": {
-    put: {
-      tags: ["Auth"],
-      security: [{ JWT: [] }],
-      summary: "Update user role by ID",
-      parameters: [
-        {
-          in: "path",
-          name: "id",
-          required: true,
-          type: "string",
-          example: "12345",
-        },
-        {
-          in: "body",
-          name: "roleData",
-          required: true,
-          schema: {
-            example: {
-              role: "",
-            },
-          },
-        },
-      ],
-      consumes: ["application/json"],
-      responses,
-    },
-  },
-  "/auth/user/email/{email}": {
-    get: {
-      tags: ["Auth"],
-      security: [{ JWT: [] }],
-      summary: "Get a user by email",
-      parameters: [
-        {
-          in: "path",
-          name: "email",
-          required: true,
-          type: "string",
-          example: "user@example.com",
-        },
-      ],
-      responses,
-    },
-  },
   "/auth/user/{id}/password": {
     put: {
       tags: ["Auth"],
@@ -211,7 +98,6 @@ const auth = {
             example: {
               email: "",
               newPassword: "",
-              verificationCode: "",
             },
           },
         },
